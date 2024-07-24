@@ -26,6 +26,7 @@ jobs:
           node -v
           npm -v
           ls -la
+          cat package.json
 
       - name: Run tests
         run: npm test

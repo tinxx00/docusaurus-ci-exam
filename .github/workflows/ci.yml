@@ -1,4 +1,4 @@
- name: Deploy Docusaurus site to GitHub Pages
+name: Deploy Docusaurus site to GitHub Pages
 
 on:
   push:
@@ -21,15 +21,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Debug environment
+        run: |
+          node -v
+          npm -v
+          ls -la
+
       - name: Run tests
         run: npm test
 
       - name: Build site
         run: npm run build
 
+      - name: List build directory
+        run: ls -la ./build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-
